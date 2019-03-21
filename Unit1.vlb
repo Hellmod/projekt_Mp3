@@ -1,0 +1,6 @@
+﻿[OpenDialog]
+LayerNames=stringl1;str2;str3
+
+[Module Settings]
+ModelLayerNames=stringl1;str2;str3
+

@@ -1,0 +1,147 @@
+﻿//---------------------------------------------------------------------------
+
+#include <fmx.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.fmx"
+
+TForm1 *Form1;
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+ void __fastcall TForm1::PlayFile(int index)
+{
+	Form1->MediaPlayer->FileName=Form1->ListBox1->Items->Strings[index];
+	if(Form1->MediaPlayer->Media!=NULL){
+		Form1->l_nazwa->Text=ExtractFileName(Form1->ListBox1->Items->Strings[index]);
+		Form1->l_DurationLabel->Text=IntToStr((__int64)Form1->MediaPlayer->Media->Duration/10000000)+" s";   //TODO zamienić sekundy naminuty + sekundy
+		Form1->t_DurationTrackBar->Max=Form1->MediaPlayer->Media->Duration;
+		Form1->t_Volume->Max=1;
+		Form1->t_Volume->Value=1-Form1->MediaPlayer->Media->Volume;
+		Form1->l_PlayingLabel->Text="0 s";
+		Form1->MediaPlayer->CurrentTime=0;
+		Form1->t_Timer->Enabled=true;
+		Form1->b_Play->Enabled=true;
+	}
+}
+//---------------------------------------------------------------------------
+int ItemIndex=0;
+void __fastcall TForm1::b_wybierzClick(TObject *Sender)
+{
+	//OpenDialog->Filter=  TMediaCodecManager::GetFilterStringByType(TMediaType::Audio);
+	OpenDialog->FileName = "";
+	if(OpenDialog->Execute()){
+		ListBox1->Items->AddStrings(OpenDialog->Files);
+		Form1->b_Play->Enabled=true;
+		Form1->b_Load->Enabled=true;
+		//ShowMessage(ListBox1->Items->ValueFromIndex[0]);
+	}
+}
+//------------------------------zmiana w czasie utworu---------------------------------------------
+
+void __fastcall TForm1::t_DurationTrackBarChange(TObject *Sender)
+{
+	if(t_DurationTrackBar->Tag==0)
+		MediaPlayer->CurrentTime=(__int64)t_DurationTrackBar->Value;
+}
+//---------------------zmiana głośniości------------------------------------------------------
+
+void __fastcall TForm1::t_VolumeChange(TObject *Sender)
+{
+	MediaPlayer->Volume=1-t_Volume->Value;
+	String temp=(int)((1-t_Volume->Value)*100);
+	Form1->l_Volume->Text=temp+" %";
+}
+//--------------------stop / play-------------------------------------------------------
+
+void __fastcall TForm1::b_PlayClick(TObject *Sender)
+{
+	if(MediaPlayer->State ==TMediaState::Playing){
+		b_Play->Text="Play";
+		MediaPlayer->Stop();
+	}
+	else{
+		b_Play->Text="Pause";
+		MediaPlayer->Play();
+    }
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::t_TimerTimer(TObject *Sender)
+{
+
+	t_DurationTrackBar->Tag=1;
+	t_DurationTrackBar->Value=MediaPlayer->CurrentTime;
+   //	l_PlayingLabel->Text=IntToStr((__int64)MediaPlayer->Media->CurrentTime/10000000)+" s";//MediaTimeS
+	int godzin,minut,sekund;
+    AnsiString godz,min,sek;
+
+	godzin=MediaPlayer->Media->CurrentTime/3600;
+    godz=IntToStr(godzin);
+    if(godzin<10) godz="0"+godz;
+
+	minut=(MediaPlayer->Media->CurrentTime-godzin*3600)/60;
+    min=IntToStr(minut);
+    if(minut<10) min="0"+min;
+
+	sekund=MediaPlayer->Media->CurrentTime-godzin*3600-minut*60;
+    sek=IntToStr(sekund);
+    if(sekund<10) sek="0"+sek;
+
+	l_PlayingLabel->Text=godz+":"+min+":"+sek;
+
+
+	t_DurationTrackBar->Tag=0;
+	if(MediaPlayer->CurrentTime >= MediaPlayer->Media->Duration){
+		MediaPlayer->Clear();
+		l_PlayingLabel->Text="0 s";
+		l_nazwa->Text="<none>";
+		t_DurationTrackBar->Value=0;
+		t_Volume->Value=1;
+
+
+		if(Form1->ListBox1->Items->Count > ItemIndex+1){
+			ItemIndex++;
+			Form1->ListBox1->ItemIndex=ItemIndex;
+		   //	Form1->ListBox1->Select
+			PlayFile(ItemIndex);
+			MediaPlayer->Play();
+		}
+		else{
+			Form1->b_Play->Enabled=false;
+			Form1->t_Timer->Enabled=false;
+  			Form1->b_Play->Text="Play";
+		}
+	}
+
+}
+
+void __fastcall TForm1::b_LoadClick(TObject *Sender)
+{
+	ItemIndex=ListBox1->ItemIndex;
+	PlayFile(ItemIndex);
+	b_Play->Text="Pause";
+	MediaPlayer->Play();
+	//TForm1::PlayFile(int index)
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::ListBox1DblClick(TObject *Sender)
+{
+	ItemIndex=ListBox1->ItemIndex;
+	PlayFile(ItemIndex);
+	b_Play->Text="Pause";
+	MediaPlayer->Play();
+}
+//---------------------------------------------------------------------------
+
+
+
+

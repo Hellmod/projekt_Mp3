@@ -1,0 +1,54 @@
+//---------------------------------------------------------------------------
+
+#ifndef Unit1H
+#define Unit1H
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <FMX.Controls.hpp>
+#include <FMX.Forms.hpp>
+#include <Datasnap.DSHTTP.hpp>
+#include <FMX.Controls.Presentation.hpp>
+#include <FMX.Media.hpp>
+#include <FMX.StdCtrls.hpp>
+#include <FMX.Types.hpp>
+#include <FMX.Dialogs.hpp>
+#include <FMX.Layouts.hpp>
+#include <FMX.ListBox.hpp>
+#include <FMX.Memo.hpp>
+#include <FMX.ScrollBox.hpp>
+//---------------------------------------------------------------------------
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+	TMediaPlayer *MediaPlayer;
+	TButton *b_wybierz;
+	TLabel *l_nazwa;
+	TOpenDialog *OpenDialog;
+	TListBox *ListBox1;
+	TButton *b_Play;
+	TLabel *Label1;
+	TLabel *l_PlayingLabel;
+	TLabel *l_DurationLabel;
+	TTimer *t_Timer;
+	TTrackBar *t_DurationTrackBar;
+	TTrackBar *t_Volume;
+	TLabel *Label4;
+	TLabel *l_test;
+	TLabel *l_test2;
+	TButton *b_Load;
+	TLabel *Label2;
+	void __fastcall PlayFile(int index);
+	void __fastcall b_wybierzClick(TObject *Sender);
+	void __fastcall t_DurationTrackBarChange(TObject *Sender);
+	void __fastcall t_VolumeChange(TObject *Sender);
+	void __fastcall b_PlayClick(TObject *Sender);
+	void __fastcall t_TimerTimer(TObject *Sender);
+	void __fastcall b_LoadClick(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+	__fastcall TForm1(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+//---------------------------------------------------------------------------
+#endif

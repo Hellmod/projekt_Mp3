@@ -1,0 +1,249 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 499
+  ClientWidth = 896
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object b_wybierz: TButton
+    Position.X = 48.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 129.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'Wybierz plik'
+    OnClick = b_wybierzClick
+  end
+  object l_nazwa: TLabel
+    Position.X = 128.000000000000000000
+    Position.Y = 304.000000000000000000
+    Size.Width = 241.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '<none>'
+    TabOrder = 2
+  end
+  object MediaPlayer: TMediaPlayer
+    Left = 48
+    Top = 400
+  end
+  object OpenDialog: TOpenDialog
+    Filter = 'mp3|*.mp3'
+    Options = [ofHideReadOnly, ofAllowMultiSelect, ofFileMustExist, ofEnableSizing]
+    Left = 120
+    Top = 400
+  end
+  object ListBox1: TListBox
+    Position.X = 32.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 505.000000000000000000
+    Size.Height = 200.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    OnDblClick = ListBox1DblClick
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 501.000000000000000000
+    Viewport.Height = 196.000000000000000000
+  end
+  object b_Play: TButton
+    Enabled = False
+    Position.X = 24.000000000000000000
+    Position.Y = 336.000000000000000000
+    TabOrder = 6
+    Text = 'Play'
+    OnClick = b_PlayClick
+  end
+  object Label1: TLabel
+    Position.X = 24.000000000000000000
+    Position.Y = 304.000000000000000000
+    Size.Width = 81.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Pe'#322'na Nazwa:'
+    TabOrder = 7
+  end
+  object l_PlayingLabel: TLabel
+    Position.X = 176.000000000000000000
+    Position.Y = 344.000000000000000000
+    Size.Width = 41.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0 s'
+    TabOrder = 8
+  end
+  object l_DurationLabel: TLabel
+    Position.X = 264.000000000000000000
+    Position.Y = 344.000000000000000000
+    Size.Width = 33.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0 s'
+    TabOrder = 9
+  end
+  object t_DurationTrackBar: TTrackBar
+    CanParentFocus = True
+    Orientation = Horizontal
+    Position.X = 24.000000000000000000
+    Position.Y = 368.000000000000000000
+    Size.Width = 585.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 11
+    OnChange = t_DurationTrackBarChange
+  end
+  object t_Volume: TTrackBar
+    CanParentFocus = True
+    Orientation = Vertical
+    Position.X = 568.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 19.000000000000000000
+    Size.Height = 145.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 12
+    OnChange = T_VolumeChange
+  end
+  object Label4: TLabel
+    Position.X = 552.000000000000000000
+    Position.Y = 80.000000000000000000
+    Size.Width = 49.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'g'#322'o'#347'no'#347#263
+    TabOrder = 13
+  end
+  object l_test: TLabel
+    Position.X = 32.000000000000000000
+    Position.Y = 464.000000000000000000
+    Size.Width = 529.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'test'
+    Visible = False
+    TabOrder = 14
+  end
+  object l_test2: TLabel
+    Position.X = 32.000000000000000000
+    Position.Y = 480.000000000000000000
+    Text = 'test2'
+    Visible = False
+    TabOrder = 15
+  end
+  object t_Timer: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = t_TimerTimer
+    Left = 184
+    Top = 400
+  end
+  object b_Load: TButton
+    Enabled = False
+    Position.X = 208.000000000000000000
+    Position.Y = 264.000000000000000000
+    TabOrder = 19
+    Text = 'Za'#322'aduj'
+    OnClick = b_LoadClick
+  end
+  object Label2: TLabel
+    Position.X = 216.000000000000000000
+    Position.Y = 344.000000000000000000
+    Size.Width = 17.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'z'
+    TabOrder = 23
+  end
+  object l_Volume: TLabel
+    Position.X = 560.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 33.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '100 %'
+    TabOrder = 24
+  end
+  object ListBox2: TListBox
+    Position.X = 616.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 217.000000000000000000
+    Size.Height = 329.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 28
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 213.000000000000000000
+    Viewport.Height = 325.000000000000000000
+    object ListBoxItem1: TListBoxItem
+      TabOrder = 0
+      Text = 'Walc Angielski'
+    end
+    object Discotep: TListBoxItem
+      Position.Y = 19.000000000000000000
+      TabOrder = 1
+      Text = 'Discotep'
+    end
+    object Quickstep: TListBoxItem
+      Position.Y = 38.000000000000000000
+      TabOrder = 2
+      Text = 'Quickstep'
+    end
+    object Samba: TListBoxItem
+      Position.Y = 57.000000000000000000
+      TabOrder = 3
+      Text = 'Samba'
+    end
+    object Chacha: TListBoxItem
+      Position.Y = 76.000000000000000000
+      TabOrder = 4
+      Text = 'Chacha'
+    end
+    object ListBoxItem6: TListBoxItem
+      Position.Y = 95.000000000000000000
+      TabOrder = 5
+      Text = 'Foxtrot'
+    end
+    object ListBoxItem7: TListBoxItem
+      Position.Y = 114.000000000000000000
+      TabOrder = 6
+      Text = 'Quickstep'
+    end
+    object ListBoxItem8: TListBoxItem
+      Position.Y = 133.000000000000000000
+      TabOrder = 7
+      Text = 'Tango'
+    end
+    object ListBoxItem9: TListBoxItem
+      Position.Y = 152.000000000000000000
+      TabOrder = 8
+      Text = 'Jive'
+    end
+    object ListBoxItem10: TListBoxItem
+      Position.Y = 171.000000000000000000
+      TabOrder = 9
+      Text = 'Walc Angielski'
+    end
+    object ListBoxItem11: TListBoxItem
+      Position.Y = 190.000000000000000000
+      TabOrder = 10
+      Text = 'Rumba'
+    end
+    object ListBoxItem12: TListBoxItem
+      Position.Y = 209.000000000000000000
+      TabOrder = 11
+      Text = 'Paso Dpble'
+    end
+    object ListBoxItem2: TListBoxItem
+      Position.Y = 228.000000000000000000
+      TabOrder = 12
+      Text = 'Walc Wiede'#324'ski'
+    end
+  end
+end

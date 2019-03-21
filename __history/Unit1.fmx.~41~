@@ -1,0 +1,170 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 394
+  ClientWidth = 620
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object b_wybierz: TButton
+    Position.X = 48.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 129.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'Wybierz plik'
+    OnClick = b_wybierzClick
+  end
+  object l_nazwa: TLabel
+    Position.X = 128.000000000000000000
+    Position.Y = 304.000000000000000000
+    Size.Width = 241.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '<none>'
+    TabOrder = 2
+  end
+  object MediaPlayer: TMediaPlayer
+    Left = 48
+    Top = 400
+  end
+  object OpenDialog: TOpenDialog
+    Filter = 'mp3|*.mp3'
+    Options = [ofHideReadOnly, ofAllowMultiSelect, ofFileMustExist, ofEnableSizing]
+    Left = 120
+    Top = 400
+  end
+  object ListBox1: TListBox
+    Position.X = 32.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 505.000000000000000000
+    Size.Height = 200.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 501.000000000000000000
+    Viewport.Height = 196.000000000000000000
+  end
+  object b_Play: TButton
+    Enabled = False
+    Position.X = 24.000000000000000000
+    Position.Y = 336.000000000000000000
+    TabOrder = 6
+    Text = 'Play'
+    OnClick = b_PlayClick
+  end
+  object Label1: TLabel
+    Position.X = 24.000000000000000000
+    Position.Y = 304.000000000000000000
+    Size.Width = 81.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Pe'#322'na Nazwa:'
+    TabOrder = 7
+  end
+  object l_PlayingLabel: TLabel
+    Position.X = 176.000000000000000000
+    Position.Y = 344.000000000000000000
+    Size.Width = 41.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0 s'
+    TabOrder = 8
+  end
+  object l_DurationLabel: TLabel
+    Position.X = 264.000000000000000000
+    Position.Y = 344.000000000000000000
+    Size.Width = 33.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0 s'
+    TabOrder = 9
+  end
+  object t_DurationTrackBar: TTrackBar
+    CanParentFocus = True
+    Orientation = Horizontal
+    Position.X = 24.000000000000000000
+    Position.Y = 368.000000000000000000
+    Size.Width = 585.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 11
+    OnChange = t_DurationTrackBarChange
+  end
+  object t_Volume: TTrackBar
+    CanParentFocus = True
+    Orientation = Vertical
+    Position.X = 568.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 19.000000000000000000
+    Size.Height = 145.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 12
+    OnChange = T_VolumeChange
+  end
+  object Label4: TLabel
+    Position.X = 552.000000000000000000
+    Position.Y = 80.000000000000000000
+    Size.Width = 49.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'g'#322'o'#347'no'#347#263
+    TabOrder = 13
+  end
+  object l_test: TLabel
+    Position.X = 32.000000000000000000
+    Position.Y = 464.000000000000000000
+    Size.Width = 529.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'test'
+    Visible = False
+    TabOrder = 14
+  end
+  object l_test2: TLabel
+    Position.X = 32.000000000000000000
+    Position.Y = 480.000000000000000000
+    Text = 'test2'
+    Visible = False
+    TabOrder = 15
+  end
+  object t_Timer: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = t_TimerTimer
+    Left = 184
+    Top = 400
+  end
+  object b_Load: TButton
+    Enabled = False
+    Position.X = 208.000000000000000000
+    Position.Y = 264.000000000000000000
+    TabOrder = 19
+    Text = 'Za'#322'aduj'
+    OnClick = b_LoadClick
+  end
+  object Label2: TLabel
+    Position.X = 216.000000000000000000
+    Position.Y = 344.000000000000000000
+    Size.Width = 17.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'z'
+    TabOrder = 23
+  end
+  object l_Volume: TLabel
+    Position.X = 560.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 33.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '100 %'
+    TabOrder = 24
+  end
+end
